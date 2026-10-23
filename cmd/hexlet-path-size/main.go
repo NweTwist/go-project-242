@@ -47,12 +47,12 @@ func main() {
 			}
 
 			path := c.Args().Get(0)
-			size := goproject242.GetPathSize(path, includeHidden, recursive)
+			size := goproject242.GetPathSize(path, humanReadable, includeHidden, recursive)
 
 			if humanReadable {
-				fmt.Printf("%s, %s\n", goproject242.FormatSize(size), path)
+				fmt.Printf("%s\t%s\n", goproject242.FormatSize(size), path)
 			} else {
-				fmt.Printf("%d, %s\n", size, path)
+				fmt.Printf("%d\t%s\n", size, path)
 			}
 			return nil
 		},
