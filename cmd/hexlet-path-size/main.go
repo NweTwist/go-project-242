@@ -6,7 +6,7 @@ import (
 	"github.com/urfave/cli/v3"
 
 	"context"
-	goproject242 "go-project-242"
+	goproject242 "github.com/NweTwist/go-project-242"
 	"os"
 )
 
