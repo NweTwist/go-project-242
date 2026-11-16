@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetPathSize(path string, humanReadable bool, includeHidden bool, recursive bool) (string, error) {
+func GetPathSize(path string, recursive bool, includeHidden bool, humanReadable bool) (string, error) {
 	var size int64
 
 	err := filepath.WalkDir(path, func(

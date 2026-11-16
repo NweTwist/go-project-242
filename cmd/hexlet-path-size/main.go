@@ -47,7 +47,7 @@ func main() {
 			}
 
 			path := c.Args().Get(0)
-			size, err := code.GetPathSize(path, humanReadable, includeHidden, recursive)
+			size, err := code.GetPathSize(path, recursive, includeHidden, humanReadable)
 			if err != nil {
 				return err
 			}
