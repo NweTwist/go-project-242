@@ -52,11 +52,7 @@ func main() {
 				return err
 			}
 
-			if humanReadable {
-				fmt.Printf("%s\t%s\n", code.FormatSize(size), path)
-			} else {
-				fmt.Printf("%d\t%s\n", size, path)
-			}
+			fmt.Printf("%s\t%s\n", size, path)
 			return nil
 		},
 	}
