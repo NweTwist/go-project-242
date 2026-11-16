@@ -5,8 +5,8 @@ import (
 
 	"github.com/urfave/cli/v3"
 
+	code "code"
 	"context"
-	goproject242 "github.com/NweTwist/go-project-242"
 	"os"
 )
 
@@ -47,10 +47,10 @@ func main() {
 			}
 
 			path := c.Args().Get(0)
-			size := goproject242.GetPathSize(path, humanReadable, includeHidden, recursive)
+			size := code.GetPathSize(path, humanReadable, includeHidden, recursive)
 
 			if humanReadable {
-				fmt.Printf("%s\t%s\n", goproject242.FormatSize(size), path)
+				fmt.Printf("%s\t%s\n", code.FormatSize(size), path)
 			} else {
 				fmt.Printf("%d\t%s\n", size, path)
 			}
