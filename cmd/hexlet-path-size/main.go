@@ -47,7 +47,10 @@ func main() {
 			}
 
 			path := c.Args().Get(0)
-			size := code.GetPathSize(path, humanReadable, includeHidden, recursive)
+			size, err := code.GetPathSize(path, humanReadable, includeHidden, recursive)
+			if err != nil {
+				return err
+			}
 
 			if humanReadable {
 				fmt.Printf("%s\t%s\n", code.FormatSize(size), path)

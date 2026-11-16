@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetPathSize(path string, humanReadable bool, includeHidden bool, recursive bool) int64 {
+func GetPathSize(path string, humanReadable bool, includeHidden bool, recursive bool) (int64, error) {
 	var size int64
 
 	err := filepath.WalkDir(path, func(
@@ -43,8 +43,8 @@ func GetPathSize(path string, humanReadable bool, includeHidden bool, recursive 
 	})
 
 	if err != nil {
-		return 0
+		return 0, err
 	}
 
-	return size
+	return size, nil
 }
