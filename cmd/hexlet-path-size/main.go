@@ -10,10 +10,6 @@ import (
 	"os"
 )
 
-var humanReadable bool
-var includeHidden bool
-var recursive bool
-
 func main() {
 	cmd := &cli.Command{
 		Flags: []cli.Flag{
@@ -38,13 +34,17 @@ func main() {
 				Destination: &recursive,
 			},
 		},
-		Name:  "hexlet-path-size",
-		Usage: "print size of a file or directory; supports -r (recursive), -H (human-readable), -a (include hidden)",
+		Name:      "hexlet-path-size",
+		Usage:     "print size of a file or directory; supports -r (recursive), -H (human-readable), -a (include hidden)",
 		ArgsUsage: "<path>",
 		Action: func(ctx context.Context, c *cli.Command) error {
 			if c.NArg() != 1 {
-        		return fmt.Errorf("expected exactly one path")
-    		}
+				return fmt.Errorf("expected exactly one path")
+			}
+
+			humanReadable := c.Bool("human")
+			includeHidden := c.Bool("all")
+			recursive := c.Bool("recursive")
 
 			path := c.Args().Get(0)
 			size, err := code.GetPathSize(path, recursive, humanReadable, includeHidden)
