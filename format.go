@@ -4,14 +4,23 @@ import (
 	"fmt"
 )
 
-func FormatSize(size int64) string {
-	if size < 1024 {
+func formatSize(size int64, humanReadable bool) string {
+	if !humanReadable {
 		return fmt.Sprintf("%dB", size)
-	} else if size < 1024*1024 {
-		return fmt.Sprintf("%.1fKB", float64(size)/1024)
-	} else if size < 1024*1024*1024 {
-		return fmt.Sprintf("%.2fMB", float64(size)/(1024*1024))
-	} else {
-		return fmt.Sprintf("%.2fGB", float64(size)/(1024*1024*1024))
 	}
+	
+	units := []string{"B", "KB", "MB", "GB", "TB", "PB", "EB"}
+    value := float64(size)
+    unitIndex := 0
+
+	for unitIndex < len(units)-1 && value >= 1024 {
+        value /= 1024
+        unitIndex++
+    }
+
+    if unitIndex == 0 {
+        return fmt.Sprintf("%.0fB", value)
+    }
+
+    return fmt.Sprintf("%.1f%s", value, units[unitIndex])
 }

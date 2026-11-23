@@ -13,16 +13,38 @@
 
 ## Установка
 
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
-
 ```bash
 git clone https://github.com/NweTwist/go-project-242.git
 cd go-project-242
+make build
 ```
+
+Исполняемый файл будет создан в `bin/hexlet-path-size`.
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```bash
+./bin/hexlet-path-size testdata/test.txt
+./bin/hexlet-path-size -r testdata
+./bin/hexlet-path-size -H testdata/test.txt
+./bin/hexlet-path-size -a testdata
+./bin/hexlet-path-size -r -H -a testdata
+```
+
+Флаги:
+
+- `-r` — рекурсивно подсчитать размер директорий
+- `-H` — вывести размер в человекочитаемом формате
+- `-a` — учитывать скрытые файлы и директории
+- `-h` — показать справку
+
+Результат выводится в виде:
+
+```text
+2048B	testdata/test.txt
+```
+
+Установка и запуск в терминале показаны в записи [asciinema](https://asciinema.org/a/7RC8RuzGvyhmIWYS).
 
 ---
 

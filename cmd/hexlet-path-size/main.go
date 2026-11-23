@@ -20,31 +20,31 @@ func main() {
 			&cli.BoolFlag{
 				Name:        "human",
 				Aliases:     []string{"H"},
-				Usage:       "Size in human-readable format",
+				Usage:       "human-readable sizes (auto-select unit)",
 				Destination: &humanReadable,
 			},
 
 			&cli.BoolFlag{
 				Name:        "all",
 				Aliases:     []string{"a"},
-				Usage:       "Include hidden files and directories",
+				Usage:       "include hidden files and directories",
 				Destination: &includeHidden,
 			},
 
 			&cli.BoolFlag{
 				Name:        "recursive",
 				Aliases:     []string{"r"},
-				Usage:       "Recursive size of directories",
+				Usage:       "recursive size of directories",
 				Destination: &recursive,
 			},
 		},
 		Name:  "hexlet-path-size",
-		Usage: "Calculate the size of a directory",
+		Usage: "print size of a file or directory; supports -r (recursive), -H (human-readable), -a (include hidden)",
+		ArgsUsage: "<path>",
 		Action: func(ctx context.Context, c *cli.Command) error {
-			if c.NArg() == 0 {
-				fmt.Println("Error: No path provided")
-				return nil
-			}
+			if c.NArg() != 1 {
+        		return fmt.Errorf("expected exactly one path")
+    		}
 
 			path := c.Args().Get(0)
 			size, err := code.GetPathSize(path, recursive, humanReadable, includeHidden)
@@ -58,7 +58,7 @@ func main() {
 	}
 
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 }
