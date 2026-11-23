@@ -14,24 +14,21 @@ func main() {
 	cmd := &cli.Command{
 		Flags: []cli.Flag{
 			&cli.BoolFlag{
-				Name:        "human",
-				Aliases:     []string{"H"},
-				Usage:       "human-readable sizes (auto-select unit)",
-				Destination: &humanReadable,
+				Name:    "human",
+				Aliases: []string{"H"},
+				Usage:   "human-readable sizes (auto-select unit)",
 			},
 
 			&cli.BoolFlag{
-				Name:        "all",
-				Aliases:     []string{"a"},
-				Usage:       "include hidden files and directories",
-				Destination: &includeHidden,
+				Name:    "all",
+				Aliases: []string{"a"},
+				Usage:   "include hidden files and directories",
 			},
 
 			&cli.BoolFlag{
-				Name:        "recursive",
-				Aliases:     []string{"r"},
-				Usage:       "recursive size of directories",
-				Destination: &recursive,
+				Name:    "recursive",
+				Aliases: []string{"r"},
+				Usage:   "recursive size of directories",
 			},
 		},
 		Name:      "hexlet-path-size",
